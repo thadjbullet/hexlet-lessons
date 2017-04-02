@@ -41,7 +41,6 @@ describe('AlarmClock', () => {
 
     // clock.longClickMode();
     // expect(clock.isAlarmOn()).toBeFalsy();
-    // expect(clock.currentMode()).toBe('clock');
   });
 
   // it('should change hours and minutes', () => {

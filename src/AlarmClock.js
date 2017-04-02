@@ -1,17 +1,36 @@
 import State from './State';
+import AlarmState from './AlarmState';
 
-export default class {
-  constructor () {
+export default class extends State {
+  constructor (clock) {
+    super(clock);
     this.clockMinutes = 0;
-    this.minutes = () => this.clockMinutes;
     this.clockHours = 12;
-    this.hours = () => this.clockHours;
     this.alarmRealHours = 6;
-    this.alarmHours = () => this.alarmRealHours;
     this.alarmRealMinutes = 0;
-    this.alarmMinutes = () => this.alarmRealMinutes;
-    
-    //this.isAlarmOn = State.isAlarmOn();
-    //this.currentMode = () => 'clock';
+  }
+
+  minutes() {
+    return this.clockMinutes;
+  }
+
+  alarmMinutes() {
+    return this.alarmRealMinutes;
+  }
+
+  alarmHours() {
+    return this.alarmRealHours;
+  }
+
+  hours() {
+    return this.clockHours;
+  }
+
+  isAlarmOn() {
+    return AlarmState.state;
+  }
+
+  currentMode() {
+    return this.state;
   }
 }
