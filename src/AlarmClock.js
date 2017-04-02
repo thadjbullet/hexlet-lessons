@@ -30,6 +30,42 @@ export default class extends State {
     return AlarmState.state;
   }
 
+  isAlarmTime() {
+
+  }
+
+  clickMode() {
+
+  }
+
+  longClickMode() {
+
+  }
+
+  clickH() {
+    if(!this.onBell) {
+      if(this.mode === 'alarm') {
+        this.alarmRealHours++;
+      } else {
+        this.clockHours++;
+      }
+    }
+  }
+
+  clickM() {
+    if(!this.onBell) {
+      if(this.mode === 'alarm') {
+        this.alarmRealMinutes++;
+      } else {
+        this.clockMinutes++;
+      }
+    }
+  }
+
+  tick() {
+
+  }
+
   currentMode() {
     return this.state;
   }
