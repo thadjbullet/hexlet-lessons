@@ -27,20 +27,16 @@ export default class extends State {
   }
 
   isAlarmTime() {
-    if(this.realAlarmHours === this.clockHours && this.realAlarmMinutes === this.clockMinutes) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.checkAlarmTime();
   }
 
   clickH() {
-    //console.log(this.clockHours);
+    // console.log(this.clockHours);
     if(!this.onBell) {
       if(this.state === 'alarm') {
         this.realAlarmHours++;
         if(this.realAlarmHours >= 24) this.realAlarmHours = 0;
-      } else {
+      } else if(this.state === 'clock'){
         this.clockHours++;
         if(this.clockHours >= 24) this.clockHours = 0;
       }
@@ -48,11 +44,11 @@ export default class extends State {
   }
 
   clickM() {
-    if(!this.onBell) {
+    if(!this.isBellOn()) {
       if(this.state === 'alarm') {
         this.realAlarmMinutes++;
         if(this.realAlarmMinutes >= 60) this.realAlarmMinutes = 0;
-      } else {
+      } else if(this.state === 'clock'){
         this.clockMinutes++;
         if(this.clockMinutes >= 60) this.clockMinutes = 0;
       }
@@ -66,16 +62,18 @@ export default class extends State {
         this.clockHours++;
         if(this.clockHours >= 24) this.clockHours = 0;
       }
-      if(this.clockHours === this.realAlarmHours && this.clockMinutes === this.realAlarmMinutes) {
+
+      if(this.checkAlarmTime() && this.isAlarmOn()) {
         this.turnBellOn();
-        this.clickMode();
-      } else {
+        this.state = 'bell';
+      } else if(!this.checkAlarmTime() && this.isAlarmOn() && this.isBellOn()){
         this.turnBellOff();
         this.clickMode();
       }
   }
 
-  currentMode() {
-    return this.state;
+  checkAlarmTime() {
+    return (this.clockHours === this.realAlarmHours
+            && this.clockMinutes === this.realAlarmMinutes);
   }
 }

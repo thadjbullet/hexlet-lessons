@@ -6,10 +6,16 @@ export default class extends AlarmState {
     this.state = 'clock';
   }
 
+  currentMode() {
+    return this.state;
+  }
+
   clickMode() {
-    if(!this.onBell) {
-      if(this.state === 'clock') this.state = 'alarm';
-      else this.state = 'clock';
-    } else if(this.onBell) this.state = 'bell';
+    if(this.state === 'bell') {
+      this.state = 'clock';
+    } else {
+        if(this.state === 'clock') this.state = 'alarm';
+        else this.state = 'clock';
+    }
   }
 }

@@ -50,7 +50,7 @@ describe('AlarmClock', () => {
     expect(clock.hours()).toBe(13);
     expect(clock.alarmHours()).toBe(6);
     expect(clock.alarmMinutes()).toBe(0);
-
+   
     clock.clickM();
     expect(clock.minutes()).toBe(1);
     expect(clock.hours()).toBe(13);
@@ -105,8 +105,7 @@ describe('AlarmClock', () => {
     for (let i = 0; i < 18 * 60; i++) {
       clock.tick();
     }
-    console.log(clock.isAlarmTime());
-    console.log(clock.state);
+
     expect(clock.isAlarmTime()).toBeTruthy();
     expect(clock.currentMode()).toBe('bell');
     expect(clock.clickM()).toBeFalsy();
@@ -116,17 +115,17 @@ describe('AlarmClock', () => {
     expect(clock.currentMode()).toBe('clock');
   });
 
-  // it('should start bell if alarm on 2', () => {
-  //   const clock = new AlarmClock();
-  //   clock.longClickMode();
+  it('should start bell if alarm on 2', () => {
+    const clock = new AlarmClock();
+    clock.longClickMode();
 
-  //   for (let i = 0; i < 18 * 60; i++) {
-  //     clock.tick();
-  //   }
-  //   expect(clock.isAlarmTime()).toBeTruthy();
-  //   expect(clock.currentMode()).toBe('bell');
+    for (let i = 0; i < 18 * 60; i++) {
+      clock.tick();
+    }
+    expect(clock.isAlarmTime()).toBeTruthy();
+    expect(clock.currentMode()).toBe('bell');
 
-  //   clock.clickMode();
-  //   expect(clock.currentMode()).toBe('clock');
-  // });
+    clock.clickMode();
+    expect(clock.currentMode()).toBe('clock');
+  });
 });
